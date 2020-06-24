@@ -6,7 +6,8 @@
         <input v-model="appName" id="appName" type="text" class="form-control">
       </div>
       <div class="form-group">
-        <textarea v-model="manifest" name="manifest" id="" cols="30" rows="10" class="form-control" readonly></textarea>
+        <label for="manifest">manifest.yml</label>
+        <textarea v-model="manifest" name="manifest" id="manifest" cols="30" rows="10" class="form-control" readonly></textarea>
       </div>
     </form>
   </div>
