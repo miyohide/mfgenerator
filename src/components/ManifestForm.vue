@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'ManifestForm',
 }
 </script>
