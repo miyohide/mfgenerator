@@ -1,25 +1,40 @@
 <template>
     <div class="form-container container">
-        <form>
-            <div class="form-group">
-                <label for="appName" class="col-form-label col-sm-2">名前</label>
-                <input v-model="appName" id="appName" type="text" class="form-control">
+        <div class="form-group">
+            <label for="appName" class="col-form-label col-sm-2">名前</label>
+            <input v-model="appName" id="appName" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="target">実行環境（ビルドパック）</label>
+            <select v-model="target" name="target" id="target" class="form-control">
+                <option disabled value="">選択してください</option>
+                <option>Java</option>
+                <option>Ruby</option>
+                <option>その他</option>
+            </select>
+        </div>
+        <div v-for="(env, index) in envs" v-bind:key="index" class="form-row">
+            <div class="form-group col-md-5">
+                <label>キー</label>
+                <input type="text" v-model="env.key" class="form-control">
             </div>
-            <div class="form-group">
-                <label for="target">実行環境（ビルドパック）</label>
-                <select v-model="target" name="target" id="target" class="form-control">
-                    <option disabled value="">選択してください</option>
-                    <option>Java</option>
-                    <option>Ruby</option>
-                    <option>その他</option>
-                </select>
+            <div class="form-group col-md-5">
+                <label>値</label>
+                <input type="text" v-model="env.val" class="form-control">
             </div>
-            <div class="form-group">
-                <label for="manifest">manifest.yml</label>
-                <textarea v-model="manifest" name="manifest" id="manifest" cols="30" rows="10" class="form-control"
-                          readonly></textarea>
+            <div class="form-group col-md-2">
+                <label>操作</label>
+                <button class="btn btn-danger form-control">削除</button>
             </div>
-        </form>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" @click="addEnv">新しい環境変数</button>
+        </div>
+        <div class="form-group">
+            <label for="manifest">manifest.yml</label>
+            <textarea v-model="manifest" name="manifest" id="manifest" cols="30" rows="10" class="form-control"
+                      readonly></textarea>
+        </div>
     </div>
 </template>
 
@@ -30,6 +45,9 @@
       return {
         appName: '',
         target: '',
+        envs: [
+          {key: '', val: ''}
+        ]
       }
     },
     computed: {
@@ -53,6 +71,9 @@
         rval.push('  buildpacks:')
         rval.push('    - ' + this.target)
         return rval
+      },
+      addEnv: function () {
+        this.envs.push({key: '', val: ''})
       }
     }
   }
