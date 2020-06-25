@@ -6,8 +6,8 @@
                 <input v-model="appName" id="appName" type="text" class="form-control">
             </div>
             <div class="form-group">
-                <label for="buildpack">実行環境（ビルドパック）</label>
-                <select v-model="buildpack" name="buildpack" id="buildpack" class="form-control">
+                <label for="target">実行環境（ビルドパック）</label>
+                <select v-model="target" name="target" id="target" class="form-control">
                     <option disabled value="">選択してください</option>
                     <option>Java</option>
                     <option>Ruby</option>
@@ -29,31 +29,31 @@
     data: function () {
       return {
         appName: '',
-        buildpack: '',
+        target: '',
       }
     },
     computed: {
       manifest: function () {
         let mfList = []
-        mfList = mfList.concat(init(this.appName))
-        mfList = mfList.concat(buildpack_str(this.buildpack))
+        mfList = mfList.concat(this.init())
+        mfList = mfList.concat(this.buildpack())
         return mfList.join('\n')
       },
     },
-  }
-
-  function init (appName) {
-    let rval = []
-    rval.push('---')
-    rval.push('applications:')
-    rval.push('- name: ' + appName)
-    return rval
-  }
-
-  function buildpack_str (buildpack) {
-    let rval = []
-    rval.push('  buildpacks:')
-    rval.push('    - ' + buildpack)
-    return rval
+    methods: {
+      init: function () {
+        let rval = []
+        rval.push('---')
+        rval.push('applications:')
+        rval.push('- name: ' + this.appName)
+        return rval
+      },
+      buildpack: function () {
+        let rval = []
+        rval.push('  buildpacks:')
+        rval.push('    - ' + this.target)
+        return rval
+      }
+    }
   }
 </script>
