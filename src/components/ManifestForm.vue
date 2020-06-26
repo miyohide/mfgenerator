@@ -24,7 +24,7 @@
             </div>
             <div class="form-group col-md-2">
                 <label>操作</label>
-                <button class="btn btn-danger form-control">削除</button>
+                <button class="btn btn-danger form-control" @click="deleteEnv(index)">削除</button>
             </div>
         </div>
         <div class="form-group">
@@ -74,6 +74,9 @@
       },
       addEnv: function () {
         this.envs.push({key: '', val: ''})
+      },
+      deleteEnv: function (index) {
+        this.envs.splice(index, 1)
       }
     }
   }
