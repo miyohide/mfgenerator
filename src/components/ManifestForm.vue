@@ -55,6 +55,7 @@
         let mfList = []
         mfList = mfList.concat(this.init())
         mfList = mfList.concat(this.buildpack())
+        mfList = mfList.concat(this.envStr())
         return mfList.join('\n')
       },
     },
@@ -70,6 +71,18 @@
         let rval = []
         rval.push('  buildpacks:')
         rval.push('    - ' + this.target)
+        return rval
+      },
+      envStr: function () {
+        let rval = []
+        for (const env of this.envs) {
+          if (env.key.length != 0 && env.val.length != 0) {
+            rval.push("    " + env.key + ": " + env.val)
+          }
+        }
+        if (rval.length != 0) {
+          rval.unshift("  env:")
+        }
         return rval
       },
       addEnv: function () {
