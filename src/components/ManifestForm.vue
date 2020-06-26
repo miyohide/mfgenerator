@@ -15,12 +15,12 @@
         </div>
         <div v-for="(env, index) in envs" v-bind:key="index" class="form-row">
             <div class="form-group col-md-5">
-                <label>キー</label>
-                <input type="text" v-model="env.key" class="form-control">
+                <label :for="'envKey' + index">{{"環境変数" + index + "のキー"}}</label>
+                <input type="text" :id="'envKey' + index" v-model="env.key" class="form-control">
             </div>
             <div class="form-group col-md-5">
-                <label>値</label>
-                <input type="text" v-model="env.val" class="form-control">
+                <label :for="'envVal' + index">{{"環境変数" + index + "の値"}}</label>
+                <input type="text" :id="'envVal' + index" v-model="env.val" class="form-control">
             </div>
             <div class="form-group col-md-2">
                 <label>操作</label>
