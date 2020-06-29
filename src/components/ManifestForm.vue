@@ -13,6 +13,10 @@
                 <option>その他</option>
             </select>
         </div>
+        <div class="form-group">
+            <label for="path">パス（Javaの場合は必須）</label>
+            <input type="text" v-model="path" id="path" class="form-control">
+        </div>
         <div v-for="(env, index) in envs" v-bind:key="index" class="form-row">
             <div class="form-group col-md-5">
                 <label :for="'envKey' + index">{{"環境変数" + index + "のキー"}}</label>
@@ -45,6 +49,7 @@
       return {
         appName: '',
         target: '',
+        path: '',
         envs: [
           {key: '', val: ''}
         ]
@@ -55,6 +60,7 @@
         let mfList = []
         mfList = mfList.concat(this.init())
         mfList = mfList.concat(this.buildpack())
+        mfList = mfList.concat(this.pathStr())
         mfList = mfList.concat(this.envStr())
         return mfList.join('\n')
       },
@@ -71,6 +77,13 @@
         let rval = []
         rval.push('  buildpacks:')
         rval.push('    - ' + this.target)
+        return rval
+      },
+      pathStr: function () {
+        let rval = []
+        if (this.path.length != 0) {
+          rval.push('  path: ' + this.path)
+        }
         return rval
       },
       envStr: function () {
