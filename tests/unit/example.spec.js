@@ -16,4 +16,9 @@ describe('ManifestForm.vue', () => {
     wrapper.find('#appName').setValue('applicationName')
     expect(wrapper.vm.manifest).toContain('- name: applicationName')
   })
+
+  it('renders buildpack', () => {
+    wrapper.find('#target').setValue('Java')
+    expect(wrapper.vm.manifest).toContain('    - Java')
+  })
 })
