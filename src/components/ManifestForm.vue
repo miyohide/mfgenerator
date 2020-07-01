@@ -62,6 +62,7 @@
         mfList = mfList.concat(this.buildpack())
         mfList = mfList.concat(this.pathStr())
         mfList = mfList.concat(this.envStr())
+        mfList.push('\n')
         return mfList.join('\n')
       },
     },
