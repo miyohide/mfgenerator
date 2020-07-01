@@ -1,12 +1,10 @@
 import { shallowMount } from '@vue/test-utils'
-import HelloWorld from '@/components/HelloWorld.vue'
+import ManifestForm from '@/components/ManifestForm.vue'
 
-describe('HelloWorld.vue', () => {
-  it('renders props.msg when passed', () => {
-    const msg = 'new message'
-    const wrapper = shallowMount(HelloWorld, {
-      propsData: { msg }
-    })
-    expect(wrapper.text()).toMatch(msg)
+describe('ManifestForm.vue', () => {
+  it('renders application name', () => {
+    const wrapper = shallowMount(ManifestForm)
+    wrapper.find('#appName').setValue('applicationName')
+    expect(wrapper.vm.manifest).toContain('- name: applicationName')
   })
 })
