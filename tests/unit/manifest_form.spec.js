@@ -21,4 +21,9 @@ describe('ManifestForm.vue', () => {
     wrapper.find('#target').setValue('Java')
     expect(wrapper.vm.manifest).toContain('    - Java')
   })
+
+  it('renders path', () => {
+    wrapper.find('#path').setValue('./lib/hoge.jar')
+    expect(wrapper.vm.manifest).toContain('  path: ./lib/hoge.jar')
+  })
 })
