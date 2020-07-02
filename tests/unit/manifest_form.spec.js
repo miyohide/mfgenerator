@@ -26,4 +26,12 @@ describe('ManifestForm.vue', () => {
     wrapper.find('#path').setValue('./lib/hoge.jar')
     expect(wrapper.vm.manifest).toContain('  path: ./lib/hoge.jar')
   })
+
+  it('renders env', () => {
+    wrapper.find('#envKey0').setValue('env_key_0')
+    expect(wrapper.vm.manifest).not.toContain('  env:')
+    wrapper.find('#envVal0').setValue('env_val_0')
+    expect(wrapper.vm.manifest).toContain('  env:')
+    expect(wrapper.vm.manifest).toContain('    env_key_0: env_val_0')
+  })
 })
