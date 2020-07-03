@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="form-group">
-            <button class="btn btn-primary" @click="addEnv">新しい環境変数</button>
+            <button id="addEnv" class="btn btn-primary" @click="addEnv">新しい環境変数</button>
         </div>
         <div class="form-group">
             <label for="manifest">manifest.yml</label>
