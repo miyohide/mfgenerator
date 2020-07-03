@@ -45,4 +45,13 @@ describe('ManifestForm.vue', () => {
     expect(wrapper.vm.manifest).toContain('  env:')
     expect(wrapper.vm.manifest).toContain('    env_key_1: env_val_1')
   })
+
+  it('not render env inputs when deleteEnv button click', async () => {
+    expect(wrapper.html()).toContain('環境変数0のキー')
+    expect(wrapper.html()).toContain('環境変数0の値')
+    wrapper.find('#deleteEnv0').trigger('click')
+    await wrapper.vm.$nextTick()
+    expect(wrapper.html()).not.toContain('環境変数0のキー')
+    expect(wrapper.html()).not.toContain('環境変数0の値')
+  })
 })
