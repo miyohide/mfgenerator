@@ -82,7 +82,7 @@
       },
       pathStr: function () {
         let rval = []
-        if (this.path.length != 0) {
+        if (this.path.length !== 0) {
           rval.push('  path: ' + this.path)
         }
         return rval
@@ -90,11 +90,11 @@
       envStr: function () {
         let rval = []
         for (const env of this.envs) {
-          if (env.key.length != 0 && env.val.length != 0) {
+          if (env.key.length !== 0 && env.val.length !== 0) {
             rval.push("    " + env.key + ": " + env.val)
           }
         }
-        if (rval.length != 0) {
+        if (rval.length !== 0) {
           rval.unshift("  env:")
         }
         return rval
