@@ -28,7 +28,7 @@
             </div>
             <div class="form-group col-md-2">
                 <label>操作</label>
-                <button class="btn btn-danger form-control" @click="deleteEnv(index)">削除</button>
+                <button :id="'deleteEnv' + index" class="btn btn-danger form-control" @click="deleteEnv(index)">削除</button>
             </div>
         </div>
         <div class="form-group">
